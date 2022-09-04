@@ -1,0 +1,56 @@
+package com.example.realmdatabase
+
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
+import com.example.realmdatabase.databinding.ActivityAddContactBinding.bind
+import com.example.realmdatabase.databinding.ItemContactBinding
+
+class ContactsAdapter(private val onContactClicked: (Int) -> Unit) :
+    ListAdapter<Contact, ContactsAdapter.MyViewHolder>(MyDiffUtil) {
+
+    object MyDiffUtil : DiffUtil.ItemCallback<Contact>() {
+        override fun areItemsTheSame(oldItem: Contact, newItem: Contact): Boolean {
+            return oldItem == newItem
+        }
+
+        override fun areContentsTheSame(oldItem: Contact, newItem: Contact): Boolean {
+            return oldItem.id == newItem.id
+        }
+    }
+
+    inner class MyViewHolder(private val binding: ItemContactBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(contact: Contact?) {
+            binding.tvNameAndSurname.text = "${contact?.name} ${contact?.surname}"
+            binding.tvNumber.text = contact?.number
+            binding.tvDelete.text = "Delete"
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        return MyViewHolder(
+            ItemContactBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
+    }
+
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        val note = getItem(position)
+        holder.bind(note)
+        holder.itemView.tvDelete.setOnClickListener { onContactClicked ( position )}
+//        holder.itemView.setOnClickListener { onContactClicked ( position )}
+//        notifyDataSetChanged()
+
+    }
+
+    fun setData(allContacts: List<Contact>) {
+        this.submitList(allContacts)
+        notifyDataSetChanged()
+    }
+}
