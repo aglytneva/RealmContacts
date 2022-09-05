@@ -28,6 +28,13 @@ class MainViewModel(private val contactRepository: ContactRepository) : ViewMode
         }
     }
 
+    fun changeContact (name: String, surname:String, number: String, id: String) {
+        val contact = getContactWithId(id)
+        if (contact != null) {
+            contactRepository.changeContact(name, surname, number, contact)
+        }
+    }
+
     fun getContactId (index:Int): String {
         val allContact = contactRepository.getContact()
         val contact = allContact[index]

@@ -2,6 +2,7 @@ package com.example.realmdatabase
 
 import android.R.id
 import io.realm.Realm
+import io.realm.kotlin.deleteFromRealm
 import java.util.*
 
 
@@ -27,12 +28,32 @@ class ContactRepositoryImpl(
     override fun deleteContact(contact: Contact) {
 
         realm.executeTransaction {
-            realm.where(Contact::class.java).equalTo("id", contact.id ).findAll()
-            .deleteAllFromRealm()
+            realm.where(Contact::class.java).equalTo("id", contact.id ).findFirst()
+                ?.deleteFromRealm()
 //            return  realm.where(Contact::class.java).findAll()
         }
 
     }
 
 
+    override fun changeContact(name: String, surname: String, number: String, contact: Contact) {
+        realm.executeTransaction {
+            val dataObjectTransaction = realm.where(Contact::class.java).equalTo("id", contact.id ).findFirst()
+            dataObjectTransaction?.name =name
+            dataObjectTransaction?.surname =surname
+            dataObjectTransaction?.number=number
+        }
+
+    }
+
 }
+
+//realm.query<Person>("dog == NULL LIMIT(1)")
+//    .first()
+//    .find()
+//    ?.also { personWithoutDog ->
+//        // Add a dog in a transaction
+//        realm.writeBlocking {
+//            findLatest(personWithoutDog)?.dog = Dog().apply { name = "Laika"; age = 3 }
+//        }
+//    }

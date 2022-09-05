@@ -8,4 +8,5 @@ interface ContactRepository {
 
     fun deleteContact(contact: Contact)
 
+    fun changeContact(name: String, surname: String, number: String, contact: Contact)
 }

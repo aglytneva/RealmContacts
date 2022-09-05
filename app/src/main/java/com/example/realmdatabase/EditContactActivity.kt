@@ -19,36 +19,29 @@ class EditContactActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
-
         binding = ActivityEditContactBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val idContactToEdit:String = intent.getStringExtra("id").toString()
 
-        val contact: Contact? = viewModel.getContactWithId(idContactToEdit)
-
-        binding.etName.setText(contact?.name)
-        binding.etSurname.setText(contact?.surname)
-        binding.etNumber.setText(contact?.number)
+        binding.etName.setText(viewModel.getContactWithId(idContactToEdit)?.name)
+        binding.etSurname.setText(viewModel.getContactWithId(idContactToEdit)?.surname)
+        binding.etNumber.setText(viewModel.getContactWithId(idContactToEdit)?.number)
 
         binding.btnDelete.setOnClickListener {
             viewModel.deleteContact(idContactToEdit)
             startActivity(Intent(this@EditContactActivity, MainActivity::class.java))
             finish()
         }
-//        binding.btnDelete.setOnClickListener {
-//            with(binding) {
-//                presenter.deleteContact()
-//                startActivity(Intent(this@EditContactActivity, MainActivity::class.java))
-//                finish()
-//            }
-//        }
+        binding.btnSaveChanges.setOnClickListener {
+            viewModel.changeContact(
+                name = binding.etName.text.toString(),
+                surname = binding.etSurname.text.toString(),
+                number = binding.etNumber.text.toString(),
+                idContactToEdit)
+            startActivity(Intent(this@EditContactActivity, MainActivity::class.java))
+            finish()
+        }
     }
-
-//    override fun onAddContact(contacts: List<Contact>) {
-//        TODO("Not yet implemented")
-//    }
-
 
 }
