@@ -21,10 +21,22 @@ class MainViewModel(private val contactRepository: ContactRepository) : ViewMode
         return list
     }
 
-    fun deleteContact(index:Int) {
+    fun deleteContact(id: String) {
+        val contact = getContactWithId(id)
+        if (contact != null) {
+            contactRepository.deleteContact(contact)
+        }
+    }
+
+    fun getContactId (index:Int): String {
         val allContact = contactRepository.getContact()
         val contact = allContact[index]
-        contactRepository.deleteContact(contact)
+        return contact.id
+    }
+
+    fun getContactWithId (id:String): Contact? {
+        val contact = contactRepository.getContact().find {it.id == id}
+        return contact
     }
 
     override fun onCleared() {

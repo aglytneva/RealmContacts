@@ -40,8 +40,8 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val adapter = ContactsAdapter ({index ->
-            viewModel.deleteContact(index)})
+        val adapter = ContactsAdapter ({contactToEditIndex ->
+            editContact(contactToEditIndex)})
 
         viewModel.allContacts.observe(this) {
             adapter.setData(it)
@@ -62,5 +62,11 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
         lifecycle.removeObserver(defaultLifecycleObserver)
     }
 
+    private fun editContact (contactToEditIndex: Int) {
+        val id = viewModel.getContactId(contactToEditIndex)
+        val intent = Intent(this, EditContactActivity::class.java)
+        intent.putExtra("id", id)
+        startActivity(intent)
+    }
 
 }

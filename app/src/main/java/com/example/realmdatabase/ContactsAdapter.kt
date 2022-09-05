@@ -2,6 +2,8 @@ package com.example.realmdatabase
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -26,7 +28,7 @@ class ContactsAdapter(private val onContactClicked: (Int) -> Unit) :
         fun bind(contact: Contact?) {
             binding.tvNameAndSurname.text = "${contact?.name} ${contact?.surname}"
             binding.tvNumber.text = contact?.number
-            binding.tvDelete.text = "Delete"
+
         }
     }
 
@@ -43,11 +45,14 @@ class ContactsAdapter(private val onContactClicked: (Int) -> Unit) :
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val note = getItem(position)
         holder.bind(note)
-        holder.itemView.tvDelete.setOnClickListener { onContactClicked ( position )}
+
+        holder.itemView.findViewById<ImageView>(R.id.tvEdit).setOnClickListener { onContactClicked (position)}
 //        holder.itemView.setOnClickListener { onContactClicked ( position )}
 //        notifyDataSetChanged()
 
     }
+
+
 
     fun setData(allContacts: List<Contact>) {
         this.submitList(allContacts)

@@ -16,7 +16,5 @@ class Presenter(private val contactRepository: ContactRepository) {
         mainAction?.onAddContact(contactRepository.getContact())
     }
 
-    fun deleteContact (contact: Contact) {
-        contactRepository.deleteContact(contact)
-    }
+
 }
