@@ -1,9 +1,8 @@
-package com.example.realmdatabase
+package com.example.realmdatabase.data
 
-import android.R.id
+import com.example.realmdatabase.data.model.Contact
 import io.realm.Realm
 import io.realm.kotlin.deleteFromRealm
-import org.koin.core.Koin
 import java.util.*
 
 

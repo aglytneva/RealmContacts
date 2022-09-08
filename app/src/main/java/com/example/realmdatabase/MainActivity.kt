@@ -6,6 +6,10 @@ import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.*
 import com.example.realmdatabase.databinding.ActivityMainBinding
+import com.example.realmdatabase.ui.AddContactActivity
+import com.example.realmdatabase.ui.ContactsAdapter
+import com.example.realmdatabase.ui.EditContactActivity
+import com.example.realmdatabase.ui.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity(), LifecycleObserver {

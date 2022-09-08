@@ -1,8 +1,11 @@
-package com.example.realmdatabase
+package com.example.realmdatabase.ui
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.realmdatabase.ContactLiveData
+import com.example.realmdatabase.data.ContactRepository
+import com.example.realmdatabase.data.model.Contact
 
 class MainViewModel(private val contactRepository: ContactRepository) : ViewModel() {
 

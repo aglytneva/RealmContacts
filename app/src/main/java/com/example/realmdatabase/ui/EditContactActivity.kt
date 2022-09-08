@@ -1,13 +1,10 @@
-package com.example.realmdatabase
+package com.example.realmdatabase.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.realmdatabase.databinding.ActivityAddContactBinding
+import com.example.realmdatabase.MainActivity
 import com.example.realmdatabase.databinding.ActivityEditContactBinding
-import com.example.realmdatabase.presenter.MainAction
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class EditContactActivity : AppCompatActivity() {

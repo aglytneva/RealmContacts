@@ -20,10 +20,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AddContactActivity"
+            android:name=".ui.AddContactActivity"
             android:exported="false" />
         <activity
-            android:name=".EditContactActivity"
+            android:name=".ui.EditContactActivity"
             android:exported="false" />
     </application>
 

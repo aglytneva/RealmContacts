@@ -1,13 +1,13 @@
-package com.example.realmdatabase
+package com.example.realmdatabase.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.realmdatabase.databinding.ActivityAddContactBinding.bind
+import com.example.realmdatabase.R
+import com.example.realmdatabase.data.model.Contact
 import com.example.realmdatabase.databinding.ItemContactBinding
 
 class ContactsAdapter(private val onContactClicked: (Int) -> Unit) :
