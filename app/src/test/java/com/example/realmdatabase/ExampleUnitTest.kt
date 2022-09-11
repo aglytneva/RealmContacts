@@ -42,9 +42,9 @@ class ExampleUnitTest {
             phone = "88005553535"
         )
         val contactSecond = FakeContact(
-            name = "TestName",
-            surname = "TestSurname",
-            phone = "88005553535"
+            name = "SecondTestName",
+            surname = "SecondTestSurname",
+            phone = "Second88005553535"
         )
 
         contactRepository.addContact(contactfirst)

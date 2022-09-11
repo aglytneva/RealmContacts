@@ -19,6 +19,7 @@ class EditContactActivity : AppCompatActivity() {
         binding = ActivityEditContactBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.etName.requestFocus()
         val idContactToEdit:String = intent.getStringExtra("id").toString()
 
         binding.etName.setText(viewModel.getContactWithId(idContactToEdit)?.name)

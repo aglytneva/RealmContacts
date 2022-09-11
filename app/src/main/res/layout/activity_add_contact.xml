@@ -10,14 +10,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:hint="Имя" />
+        android:hint="Имя"
+        android:singleLine="true"
+        android:nextFocusDown="@id/etSurname"/>
 
     <EditText
         android:id="@+id/etSurname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:hint="Фамилия" />
+        android:hint="Фамилия"
+        android:singleLine="true"
+        android:nextFocusDown="@id/etNumber"/>
 
     <EditText
         android:id="@+id/etNumber"
