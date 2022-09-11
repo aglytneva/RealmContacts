@@ -1,6 +1,7 @@
 package com.example.realmdatabase.ui
 
 import android.util.Log
+import android.widget.EditText
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.realmdatabase.ContactLiveData
@@ -10,7 +11,8 @@ import com.example.realmdatabase.data.model.Contact
 class MainViewModel(private val contactRepository: ContactRepository) : ViewModel() {
 
     val allContacts: ContactLiveData
-        get() = getAllContacts() as ContactLiveData
+        get() = contactsShown(text = "") as ContactLiveData
+
 
     fun addContact(name: String, surname: String, number: String) {
 
@@ -53,4 +55,13 @@ class MainViewModel(private val contactRepository: ContactRepository) : ViewMode
         super.onCleared()
         Log.d("MainViewModel", "MainViewModel -> onCleared")
     }
+
+    fun contactsShown(text: String): MutableLiveData<List<Contact>> {
+        val list = ContactLiveData()
+        val filterContacts = contactRepository.getContact().filter {
+                it.name.contains(text) || it.surname.contains(text)|| it.number.contains(text) }
+        list.value = filterContacts.subList(0, filterContacts.size)
+        return list
+    }
+
 }

@@ -12,11 +12,11 @@ open class Contact : RealmModel {
     var id: String = ""
 
     @Required
-    var name: String? = ""
+    var name: String = ""
 
     @Required
-    var surname: String? = ""
+    var surname: String = ""
 
     @Required
-    var number: String? = ""
+    var number: String = ""
 }

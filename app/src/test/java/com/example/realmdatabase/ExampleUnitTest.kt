@@ -1,7 +1,7 @@
 package com.example.realmdatabase
 
-import com.example.realmdatabase.faceObjects.FakeContact
-import com.example.realmdatabase.faceObjects.FakeContactRepository
+import com.example.realmdatabase.fakeObjects.FakeContact
+import com.example.realmdatabase.fakeObjects.FakeContactRepository
 import org.junit.Test
 
 import org.junit.Assert.*

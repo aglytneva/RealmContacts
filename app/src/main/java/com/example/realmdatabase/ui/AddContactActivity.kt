@@ -32,6 +32,7 @@ class AddContactActivity : AppCompatActivity(), MainAction {
                     surname = etSurname.text.toString(),
                     number = etNumber.text.toString()
                 )
+
                 startActivity(Intent(this@AddContactActivity, MainActivity::class.java))
                 finish()
             }

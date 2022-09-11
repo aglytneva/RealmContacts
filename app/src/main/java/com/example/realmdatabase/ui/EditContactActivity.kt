@@ -1,9 +1,12 @@
 package com.example.realmdatabase.ui
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.realmdatabase.MainActivity
+import com.example.realmdatabase.R
 import com.example.realmdatabase.databinding.ActivityEditContactBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -11,7 +14,10 @@ class EditContactActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityEditContactBinding
 
-    private val viewModel : MainViewModel by viewModel()
+//    private val viewModel : MainViewModel by viewModel()
+//привязка ко вью модели с помощью KTX
+
+    private val viewModel by viewModel<MainViewModel> ()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +36,9 @@ class EditContactActivity : AppCompatActivity() {
             viewModel.deleteContact(idContactToEdit)
             startActivity(Intent(this@EditContactActivity, MainActivity::class.java))
             finish()
+
         }
+
         binding.btnSaveChanges.setOnClickListener {
             viewModel.changeContact(
                 name = binding.etName.text.toString(),

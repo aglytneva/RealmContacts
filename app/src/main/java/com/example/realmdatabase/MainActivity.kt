@@ -1,9 +1,21 @@
 package com.example.realmdatabase
 
 import android.content.Intent
+import android.graphics.Insets.add
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
+import android.widget.EditText
+import android.widget.TextView
+import androidx.core.graphics.Insets.add
+import androidx.core.view.OneShotPreDrawListener.add
+import androidx.core.view.isVisible
+import androidx.core.widget.addTextChangedListener
+import androidx.core.widget.doAfterTextChanged
+import androidx.core.widget.doOnTextChanged
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.*
 import com.example.realmdatabase.databinding.ActivityMainBinding
 import com.example.realmdatabase.ui.AddContactActivity
@@ -33,7 +45,10 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
         }
     }
 
-    private val viewModel : MainViewModel by viewModel()
+//    private val viewModel : MainViewModel by viewModel()
+    //Привязка ко вью модели с помощью KTX
+    private val viewModel by viewModel<MainViewModel> ()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,14 +66,14 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
             adapter.setData(it)
         }
 
-
         binding.rvContacts.adapter = adapter
-
-
 
         binding.fabAddContact.setOnClickListener {
             startActivity(Intent(this, AddContactActivity::class.java))
         }
+//      Использование библиотеки KTX
+        binding.etSearch.doAfterTextChanged { text ->  viewModel.contactsShown(text.toString())  }
+
     }
 
     override fun onDestroy() {
@@ -72,5 +87,7 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
         intent.putExtra("id", id)
         startActivity(intent)
     }
+
+
 
 }

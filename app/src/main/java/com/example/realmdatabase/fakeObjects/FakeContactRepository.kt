@@ -1,4 +1,4 @@
-package com.example.realmdatabase.faceObjects
+package com.example.realmdatabase.fakeObjects
 
 
 class FakeContactRepository {
