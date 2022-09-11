@@ -26,6 +26,7 @@ class MainViewModel(private val contactRepository: ContactRepository) : ViewMode
         return list
     }
 
+
     fun deleteContact(id: String) {
         val contact = getContactWithId(id)
         if (contact != null) {

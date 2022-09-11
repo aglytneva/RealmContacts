@@ -1,5 +1,9 @@
 package com.example.realmdatabase.fakeObjects
 
+import androidx.lifecycle.MutableLiveData
+import com.example.realmdatabase.ContactLiveData
+import com.example.realmdatabase.data.model.Contact
+
 
 class FakeContactRepository {
 
@@ -13,6 +17,11 @@ class FakeContactRepository {
 
     fun deleteContact(contact: FakeContact) {
         contactList.remove(contact)
+    }
+    fun contactsShown(text: String): List<FakeContact> {
+        val filterContacts = contactList.filter {
+            it.name.contains(text) || it.surname.contains(text)|| it.phone.contains(text) }
+        return filterContacts
     }
 
 }
